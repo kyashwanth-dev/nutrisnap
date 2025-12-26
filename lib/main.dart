@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'camera_screen.dart';
+import 'home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const CameraApp());
+  runApp(const MyApp());
 }
 
 /// Root widget
-class CameraApp extends StatelessWidget {
-  const CameraApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: CameraScreen(),
+      home: HomeScreen(),
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-
+import 'package:flutter/material.dart';
 Future<String> analyzeImageWithGemini(String imagePath) async {
   final uri = Uri.parse(
     'https://gemini-backend-rm59.onrender.com/analyze-image',
@@ -11,9 +11,9 @@ Future<String> analyzeImageWithGemini(String imagePath) async {
   final fileSizeKB = await file.length() / 1024;
 
   // 🔍 Local debug
-  print("📤 Sending image to Gemini:");
-  print("   Path: $imagePath");
-  print("   Size: ${fileSizeKB.toStringAsFixed(1)} KB");
+  debugPrint("📤 Sending image to Gemini:");
+  debugPrint("   Path: $imagePath");
+  debugPrint("   Size: ${fileSizeKB.toStringAsFixed(1)} KB");
 
   final request = http.MultipartRequest('POST', uri);
 
@@ -36,8 +36,8 @@ Future<String> analyzeImageWithGemini(String imagePath) async {
 
   // 🔥 IMPORTANT: expose backend error
   if (streamedResponse.statusCode != 200) {
-    print("❌ Gemini backend error:");
-    print(responseBody);
+    debugPrint("❌ Gemini backend error:");
+    debugPrint(responseBody);
 
     throw Exception(
       "Gemini analysis failed "
